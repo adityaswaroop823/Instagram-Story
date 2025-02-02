@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Story from "./components/Story";
 import useFetch from "./hooks/useFetch";
 import { StoryInterface } from "./types/StoryInterface";
-import StoryExpanded from "./components/StoryViewer";
+import StoryViewer from "./components/StoryViewer";
 import Loader from "./components/Loader";
 
 const App: React.FC = () => {
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         )}
       </div>
       {selectedStoryIndex !== -1 && (
-        <StoryExpanded
+        <StoryViewer
           data={stories ?? []}
           currStoryIndex={selectedStoryIndex}
           setSelectedStoryIndex={setSelectedStoryIndex}

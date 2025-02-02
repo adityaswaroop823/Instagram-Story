@@ -3,13 +3,13 @@ import { FaCamera } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import { StoryInterface } from "../types/StoryInterface";
 
-interface StoryExpandedProps {
+interface StoryViewerProps {
   data: StoryInterface[];
   currStoryIndex: number;
   setSelectedStoryIndex: (index: number) => void;
 }
 
-const StoryExpanded: React.FC<StoryExpandedProps> = ({
+const StoryViewer: React.FC<StoryViewerProps> = ({
   data,
   currStoryIndex,
   setSelectedStoryIndex,
@@ -21,12 +21,22 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
 
   const goToNextStory = useCallback(() => {
     setProgress(0);
-    setCurrentIndex((prev) => (prev < data.length - 1 ? prev + 1 : -1));
+    setCurrentIndex((prev) => {
+      if (prev < data.length - 1) {
+        return prev + 1;
+      }
+      return -1;
+    });
   }, [data.length]);
 
   const goToPreviousStory = useCallback(() => {
     setProgress(0);
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    setCurrentIndex((prev) => {
+      if (prev > 0) {
+        return prev - 1;
+      }
+      return prev;
+    });
   }, []);
 
   useEffect(() => {
@@ -129,4 +139,4 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
   );
 };
 
-export default StoryExpanded;
+export default StoryViewer;
