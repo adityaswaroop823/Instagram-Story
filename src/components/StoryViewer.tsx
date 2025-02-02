@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { FaCamera } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import { StoryInterface } from "../types/StoryInterface";
@@ -16,6 +16,9 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(currStoryIndex);
   const [progress, setProgress] = useState(0);
+  const progressRef = useRef(progress);
+  const intervalRef = useRef<number | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const goToNextStory = useCallback(() => {
     setProgress(0);
@@ -34,15 +37,34 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
     }
 
     setProgress(0);
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => (prev < 100 ? prev + 1 : 100));
+    progressRef.current = 0;
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    intervalRef.current = setInterval(() => {
+      setProgress((prev) => {
+        const newProgress = prev < 100 ? prev + 1 : 100;
+        progressRef.current = newProgress;
+        return newProgress;
+      });
     }, 50);
 
-    const timer = setTimeout(goToNextStory, 5000);
+    timeoutRef.current = setTimeout(goToNextStory, 5000);
 
     return () => {
-      clearTimeout(timer);
-      clearInterval(progressInterval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setProgress(0);
     };
   }, [currentIndex, goToNextStory]);
 

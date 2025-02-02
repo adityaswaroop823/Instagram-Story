@@ -8,7 +8,11 @@ interface StoryProps {
 
 const Story: React.FC<StoryProps> = ({ item, onClickHandler }) => {
   return (
-    <button onClick={onClickHandler} data-testid="story">
+    <button
+      onClick={onClickHandler}
+      data-testid="story"
+      aria-label={`View story of ${item.userName}`}
+    >
       <div className="bg-gradient-to-tr from-yellow-500 to-red-600 p-[1.5px]  rounded-full">
         <div className="bg-white rounded-full p-1">
           <img

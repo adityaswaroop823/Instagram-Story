@@ -43,7 +43,7 @@ const App: React.FC = () => {
       </div>
       {selectedStoryIndex !== -1 && (
         <StoryExpanded
-          data={stories}
+          data={stories ?? []}
           currStoryIndex={selectedStoryIndex}
           setSelectedStoryIndex={setSelectedStoryIndex}
         />

@@ -1,36 +1,46 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
-const useFetch = <T,>(url: string) => {
+const useFetch = <T,>(url: string, options?: RequestInit) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   
   const calledOnce = useRef(false);
 
-  useEffect(() => {
-    if (calledOnce.current) return; 
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    
+    const controller = new AbortController();
+    const { signal } = controller;
 
-    calledOnce.current = true; 
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
+    try {
+      const response = await fetch(url, { ...options, signal });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      if (!signal.aborted) {
         setError((err as Error).message);
-      } finally {
+      }
+    } finally {
+      if (!signal.aborted) {
         setLoading(false);
       }
-    };
+    }
 
+    return () => controller.abort();
+  }, [url, options]);
+
+  useEffect(() => {
+    if (calledOnce.current) return;
+    calledOnce.current = true;
     fetchData();
-  }, [url]);
+  }, [fetchData]);
 
-  return { data, loading, error };
+  return { data, loading, error, refetch: fetchData };
 };
 
 export default useFetch;
