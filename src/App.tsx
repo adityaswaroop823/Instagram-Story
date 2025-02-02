@@ -4,6 +4,7 @@ import Story from "./components/Story";
 import useFetch from "./hooks/useFetch";
 import { StoryInterface } from "./types/StoryInterface";
 import StoryExpanded from "./components/StoryViewer";
+import Loader from "./components/Loader";
 
 const App: React.FC = () => {
   const {
@@ -17,11 +18,7 @@ const App: React.FC = () => {
     <>
       <div className="overflow-hidden flex flex-col gap-2 p-2">
         <Header />
-        {loading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
+        {loading && <Loader />}
 
         {!loading && (error || !stories || stories.length === 0) && (
           <p className="text-red-500 text-center">No stories available</p>

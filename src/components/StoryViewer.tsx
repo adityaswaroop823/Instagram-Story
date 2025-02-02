@@ -18,7 +18,6 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(progress);
   const intervalRef = useRef<number | null>(null);
-  const timeoutRef = useRef<number | null>(null);
 
   const goToNextStory = useCallback(() => {
     setProgress(0);
@@ -43,41 +42,38 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
       clearInterval(intervalRef.current);
     }
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setProgress((prev) => {
         const newProgress = prev < 100 ? prev + 1 : 100;
         progressRef.current = newProgress;
+        if (newProgress === 100) {
+          goToNextStory();
+        }
         return newProgress;
       });
     }, 50);
-
-    timeoutRef.current = setTimeout(goToNextStory, 5000);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      setProgress(0);
     };
   }, [currentIndex, goToNextStory]);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { left, width } = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - left;
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      const { left, width } = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - left;
 
-    clickX < width * 0.3 ? goToPreviousStory() : goToNextStory();
-  };
+      clickX < width * 0.3 ? goToPreviousStory() : goToNextStory();
+    },
+    [goToNextStory, goToPreviousStory]
+  );
 
   return (
     <div
       className="bg-black fixed inset-0 flex justify-center items-center overflow-hidden"
+      data-testid="storyContainer"
       onClick={handleClick}
     >
       <div className="absolute top-0 left-0 w-full h-1 bg-gray-700">
@@ -89,6 +85,7 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
 
       <div className="relative flex justify-center flex-col items-center w-full h-full">
         <img
+          data-testid="storyimage"
           src={data[currentIndex]?.storyImage}
           alt={data[currentIndex]?.userName}
           width={140}
@@ -116,12 +113,16 @@ const StoryExpanded: React.FC<StoryExpandedProps> = ({
               </div>
             </div>
           </div>
-          <IoIosClose
-            size={56}
+          <button
+            data-testid="closeBtn"
             onClick={() => setSelectedStoryIndex(-1)}
-            className="cursor-pointer"
-            aria-label="Close Story"
-          />
+          >
+            <IoIosClose
+              size={56}
+              className="cursor-pointer"
+              aria-label="Close Story"
+            />
+          </button>
         </div>
       </div>
     </div>
