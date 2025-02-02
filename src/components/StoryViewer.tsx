@@ -74,8 +74,12 @@ const StoryViewer: React.FC<StoryViewerProps> = ({
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const { left, width } = e.currentTarget.getBoundingClientRect();
       const clickX = e.clientX - left;
-
-      clickX < width * 0.3 ? goToPreviousStory() : goToNextStory();
+      const middlePoint = width / 2;
+      if (clickX < middlePoint) {
+        goToPreviousStory();
+      } else {
+        goToNextStory();
+      }
     },
     [goToNextStory, goToPreviousStory]
   );
