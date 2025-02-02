@@ -1,16 +1,16 @@
-let storiesData; 
+let storiesData;
 
 describe("Instagram Stories Feature", () => {
   before(() => {
-    cy.request("http://localhost:5173/stories.json").then((response) => {
+    cy.request(`${Cypress.config("baseUrl")}/stories.json`).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an("array").that.is.not.empty;
-      storiesData = response.body; 
+      storiesData = response.body;
     });
   });
 
   beforeEach(() => {
-    cy.visit("http://localhost:5173/");
+    cy.visit(`${Cypress.config("baseUrl")}`);
   });
 
   it("should fetch and display stories", () => {
@@ -27,7 +27,7 @@ describe("Instagram Stories Feature", () => {
         "have.attr",
         "src",
         story.storyImage
-      ); 
+      );
       cy.contains(story.userName).should("be.visible");
     });
   });
