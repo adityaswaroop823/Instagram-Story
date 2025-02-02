@@ -74,13 +74,16 @@ The project includes Cypress tests to ensure functionality works as expected.
 
 ### Running the Tests
 
-1. Open Cypress:
+1. configure your base url in .env file for example
+   CYPRESS_BASE_URL=http://localhost:5173
+
+2. Open Cypress:
 
    ```bash
    npm run cypress:open
    ```
 
-2. Select the `instagram-story.cy.js` file to run the tests.
+3. Select the `instagram-story.cy.js` file to run the tests.
 
 ### Example Test Case
 
