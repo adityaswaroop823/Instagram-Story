@@ -1,68 +1,80 @@
 [
     {
-      "userName": "Aditya Swaroop",
-      "profileImage": "https://i.ibb.co/WNm5P4X0/download.jpg",
-      "storyImage": "https://i.ibb.co/JjLj69Bn/Whats-App-Image-2025-02-02-at-1-58-39-PM.jpg"
+        "id": 1,
+        "userName": "Aditya Swaroop",
+        "profileImage": "https://i.ibb.co/WNm5P4X0/download.jpg",
+        "storyImage": "https://i.ibb.co/JjLj69Bn/Whats-App-Image-2025-02-02-at-1-58-39-PM.jpg"
     },
     {
-      "userName": "Stage",
-      "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGFH8uOKjSVrB3Jyk0q4BmrRxPeGXC-y-cxGKts1Uc6sHLl4qlr8cxIf6G9Oi-pYTLSZs&usqp=CAU",
-      "storyImage": "https://www.livemint.com/lm-img/img/2023/11/27/600x338/image_1701068044010_1701068051880.png"
+        "id": 2,
+        "userName": "Stage",
+        "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGFH8uOKjSVrB3Jyk0q4BmrRxPeGXC-y-cxGKts1Uc6sHLl4qlr8cxIf6G9Oi-pYTLSZs&usqp=CAU",
+        "storyImage": "https://www.livemint.com/lm-img/img/2023/11/27/600x338/image_1701068044010_1701068051880.png"
     },
     {
-      "userName": "Narendra Modi",
-      "profileImage": "https://s7d1.scene7.com/is/image/wbcollab/India_PM_Narendra_Modi-2?qlt=90&fmt=webp&resMode=sharp2",
-      "storyImage": "https://images.indianexpress.com/2023/12/cover-2.jpg"
+        "c": 3,
+        "userName": "Narendra Modi",
+        "profileImage": "https://s7d1.scene7.com/is/image/wbcollab/India_PM_Narendra_Modi-2?qlt=90&fmt=webp&resMode=sharp2",
+        "storyImage": "https://images.indianexpress.com/2023/12/cover-2.jpg"
     },
     {
+        "id": 4,
         "userName": "Liam Anderson",
         "profileImage": "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 5,
         "userName": "Sophia Carter",
         "profileImage": "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 6,
         "userName": "Ethan Wright",
         "profileImage": "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 7,
         "userName": "Ava Mitchell",
         "profileImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 8,
         "userName": "Noah Bennett",
         "profileImage": "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1546967191-fdfb13ed6b1e?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 9,
         "userName": "Isabella Torres",
         "profileImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1504198266287-1659872e6590?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 10,
         "userName": "Mason Hill",
         "profileImage": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 11,
         "userName": "Olivia Turner",
         "profileImage": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 12,
         "userName": "Lucas Scott",
         "profileImage": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=1000&auto=format&fit=crop&q=60"
-      },
-      {
+    },
+    {
+        "id": 13,
         "userName": "Emma Brooks",
         "profileImage": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1000&auto=format&fit=crop&q=60",
         "storyImage": "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?w=1000&auto=format&fit=crop&q=60"
-      }
-  ]
-  
+    }
+]
