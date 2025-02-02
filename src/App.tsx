@@ -28,7 +28,7 @@ const App: React.FC = () => {
         )}
 
         {!loading && !error && stories && stories.length > 0 && (
-          <div className="flex gap-2 overflow-x-scroll border-gray-200 scroll-smooth scrollbar-hide">
+          <div className="flex gap-2 overflow-x-scroll border-gray-200 scroll-smooth scrollbar-hidden">
             {stories.map((item, index) => (
               <Story
                 item={item}
