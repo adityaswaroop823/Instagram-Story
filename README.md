@@ -1,5 +1,7 @@
 # Insta Story App
 
+- **Deployed Url**:-https://story-insta.netlify.app/
+
 A React-based application that displays stories in a scrollable, expandable format, simulating a user-friendly Instagram-style story viewer.
 
 ## Features
