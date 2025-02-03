@@ -1,35 +1,52 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Header from "./components/Header";
+import Story from "./components/Story";
+import useFetch from "./hooks/useFetch";
+import { StoryInterface } from "./types/StoryInterface";
+import StoryViewer from "./components/StoryViewer";
+import Loader from "./components/Loader";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App: React.FC = () => {
+  const {
+    data: stories,
+    loading,
+    error,
+  } = useFetch<StoryInterface[]>("/stories.json");
+  const [selectedStoryIndex, setSelectedStoryIndex] = useState<number>(-1);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="overflow-hidden flex flex-col gap-2 p-2">
+        <Header />
+        {loading && <Loader />}
+
+        {!loading && (error || !stories || stories.length === 0) && (
+          <p className="text-red-500 text-center">No stories available</p>
+        )}
+
+        {!loading && !error && stories && stories.length > 0 && (
+          <div className="flex gap-2 overflow-x-scroll border-gray-200 scroll-smooth scrollbar-hidden">
+            {stories.map((item, index) => (
+              <Story
+                item={item}
+                key={index}
+                onClickHandler={() => {
+                  setSelectedStoryIndex(index);
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {selectedStoryIndex !== -1 && (
+        <StoryViewer
+          data={stories ?? []}
+          currStoryIndex={selectedStoryIndex}
+          setSelectedStoryIndex={setSelectedStoryIndex}
+        />
+      )}
     </>
   );
-}
+};
 
 export default App;
